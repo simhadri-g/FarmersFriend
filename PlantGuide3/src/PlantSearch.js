@@ -4,6 +4,7 @@ import { Container, Header, Content,Input ,Item, Button, Icon} from 'native-base
 import LoadingPage from './Loading';
 import Meteor, {createContainer} from 'react-native-meteor';
 import PinchZoomView from 'react-native-pinch-zoom-view';
+import Croplist from './CropList';
 
 class PlantSearch extends React.Component{
   state={
@@ -32,19 +33,14 @@ class PlantSearch extends React.Component{
 
       if(this.state.page===1)
       {
-        return(<LoadingPage  />);
+        return(<Croplist  />);
       }
       else if (this.state.page===2) {
            var image= this.props.Plants;
            console.log('show image '+image._id)
 return(
-				<View>
-        <Image
-          source={{uri: "ws://192.168.1.105:3000/"+image}}
-          style={{height: 200,width:50}}
-        />
+  <Croplist  />
 
-				</View>
 			)
 
 
@@ -77,13 +73,13 @@ return(
               </Button>
           </Header>
           <Content>
-          <PinchZoomView>
+          
               <Text>
                     {this.state.val}
                     //Plant deltails will appear here
               </Text>
               {this.renderBody()}
-          </PinchZoomView>
+
           </Content>
         </Container>
 </View>

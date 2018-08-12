@@ -19,7 +19,7 @@ const TabNav = createBottomTabNavigator(
   Predictions:{ screen: PredictionsScreen},
   PlantFindScreen: { screen: PlantSearch},
   Selling:{screen:SellingScreen},
-  CropDirectory: {screen:Croplist}
+//  CropDirectory: {screen:Croplist}
 
 },
 {
@@ -27,10 +27,10 @@ navigationOptions: ({ navigation }) => ({
   tabBarIcon: ({ focused, tintColor }) => {
     const { routeName } = navigation.state;
     let iconName;
-    if (routeName === 'CropDirectory') {
-      iconName = `ios-navigate${focused ? '' : '-outline'}`;
-    }
-     else if (routeName === 'PlantFindScreen') {
+    // if (routeName === 'CropDirectory') {
+    //   iconName = `ios-navigate${focused ? '' : '-outline'}`;
+    // }
+   if (routeName === 'PlantFindScreen') {
       iconName = `ios-search${focused ? '' : '-outline'}`;
     }
     else if (routeName === 'Predictions') {

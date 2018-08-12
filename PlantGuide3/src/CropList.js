@@ -25,7 +25,7 @@ class Croplist extends React.Component{
 
   makeRemoteRequest = () => {
       const { page, seed } = this.state;
-      const url = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=60`;
+      const url = `https://randomuser.me/api/?seed=${seed}&page=${page}&results=10`;
       this.setState({ loading: true });
 
       fetch(url)
