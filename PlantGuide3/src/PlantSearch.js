@@ -38,9 +38,9 @@ class PlantSearch extends React.Component{
            var image= this.props.Plants;
            console.log('show image '+image._id)
 return(
-				<View	 	>
+				<View>
         <Image
-          source={{uri: "http://192.168.1.101:3000/"+image}}
+          source={{uri: "ws://192.168.1.105:3000/"+image}}
           style={{height: 200,width:50}}
         />
 
