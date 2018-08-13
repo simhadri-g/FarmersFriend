@@ -1,96 +1,63 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Button,Title,Body } from 'native-base';
 import {Text} from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+//import { createStackNavigator } from 'react-navigation';
 import PlantSearch from './PlantSearch';
 import PredictionsScreen from './Predictions';
 import SellingScreen from './Selling';
+import Croplist from './CropList';
 
-class LogoTitle extends React.Component {
-  render() {
-    return (
-      <Text style={{flex:1, marginLeft:'30%',alignItems:'center',justifyContent:'center',fontSize:20,color:'#fff'}}>
-              Select Screen
-      </Text>
-    );
-  }
-}
 
- class ButtonThemes extends Component {
-   // state = {
-   //   screenNumber : 0
-   //
-   // }
-   static navigationOptions = {
-   // headerTitle instead of title
-   headerTitle: <LogoTitle />,
- };
-
-  render() {
-    return (
-      <Container >
-
-        <Content style = {{margin:10}}>
-          <Button success  block  style = {{margin:10}}
-           onPress={() => this.props.navigation.navigate('PlantFindScreen')}
-          >
-                <Text> Plant search </Text>
-           </Button>
-          <Button primary block style = {{margin:10}}
-            onPress={() => this.props.navigation.navigate('Predictions')}
-          >
-                <Text> Predictions </Text>
-          </Button>
-
-          <Button warning block style = {{margin:10}}
-          onPress={() => this.props.navigation.navigate('Selling')}
-          >
-                <Text> Selling </Text>
-          </Button>
-          <Button info block  style = {{margin:10}}>
-                 <Text> Logout </Text>
-          </Button>
-
-        </Content>
-      </Container>
-    );
+import { Ionicons } from '@expo/vector-icons';
+import { createBottomTabNavigator } from 'react-navigation';
 
 
 
-  }
-}
-
-const RootStack = createStackNavigator(
+const TabNav = createBottomTabNavigator(
   {
-    Buttons: {
-      screen: ButtonThemes,
-    },
-    PlantFindScreen: {
-      screen: PlantSearch,
-    },
-    Predictions:{
-      screen: PredictionsScreen,
-    },
-    Selling:{
-      screen:SellingScreen,
-    }
-    // LogOut:{
-    //   screen:
+  //ButtonsScreen: { screen:RootStack},
+  Predictions:{ screen: PredictionsScreen},
+  PlantFindScreen: { screen: PlantSearch},
+  Selling:{screen:SellingScreen},
+//  CropDirectory: {screen:Croplist}
+
+},
+{
+navigationOptions: ({ navigation }) => ({
+  tabBarIcon: ({ focused, tintColor }) => {
+    const { routeName } = navigation.state;
+    let iconName;
+    // if (routeName === 'CropDirectory') {
+    //   iconName = `ios-navigate${focused ? '' : '-outline'}`;
     // }
-
+   if (routeName === 'PlantFindScreen') {
+      iconName = `ios-search${focused ? '' : '-outline'}`;
+    }
+    else if (routeName === 'Predictions') {
+      iconName = `ios-information-circle${focused ? '' : '-outline'}`;
+    }else if (routeName === 'Selling') {
+      iconName = `ios-pricetag${focused ? '' : '-outline'}`;
+    }
+    // You can return any component that you like here! We usually use an
+    // icon component from react-native-vector-icons
+    return <Ionicons name={iconName} size={25} color={tintColor} />;
   },
-  {
-    initialRouteName: 'Buttons',
-    navigationOptions: {
-      headerStyle: {
-        backgroundColor: '#4169E1',
-      },
+}),
 
-  }}
+tabBarOptions: {
+  activeTintColor: 'tomato',
+  inactiveTintColor: 'gray',
+},
+animationEnabled: false,
+swipeEnabled: false,
+}
+// }
 );
 
-export default class App extends React.Component {
-  render() {
-    return <RootStack />;
+
+
+export default class App extends React.Component{
+  render(){
+    return(<TabNav/>);
   }
 }

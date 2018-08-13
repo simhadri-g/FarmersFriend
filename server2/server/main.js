@@ -1,5 +1,6 @@
 import { Meteor } from 'meteor/meteor';
-import {PlantName} from '../imports/collections/Plants';
+import {Plants} from '../imports/collections/Plants';
+import {Predictions} from '../imports/collections/predictions';
 var fs = Npm.require("fs");
 
 
@@ -15,24 +16,14 @@ Meteor.methods({
     //   console.log('user not logged in')
     //   return;
     // }
-
     console.log('adding plant')
-    var textPath =  '../../../../../public';
-    console.log(textPath)
-     var texts = fs.readdirSync(textPath);
-     console.log(texts)
-//     var txtFile = texts[2]
-//     var file = new File(txtFile);
-//
-//     file.open("r"); // open file with read access
-//     var str = "";
-//     while (!file.eof) {
-//     // read each line of text
-//     str += file.readln() + "\n";
-//     }
-//     file.close();
-//
-// console.log(str)
-    return PlantName.insert({text:texts[0]})
+    Plants.insert(plant);
   }
+});
+Meteor.methods({
+  'Predictions.addOne': ( parameters ) => {
+      console.log(parameters);
+      Predictions.insert({ parameters });
+
+  },
 });

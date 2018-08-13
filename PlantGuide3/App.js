@@ -5,11 +5,14 @@ import Meteor ,{createContainer,Accounts} from 'react-native-meteor';
 //import PlantSearch from './src/PlantSearch';
 import NavigationPage from './src/NavigationPage';
 
-const SERVER_URL='ws://192.168.1.101:3000/websocket';
+const SERVER_URL='ws://192.168.225.174:3000/websocket';
+
+
+
 
 export default class App extends React.Component {
   state={
-    loggedIn : false
+    loggedIn : true
   }
 
   componentWillMount(){
@@ -30,7 +33,7 @@ export default class App extends React.Component {
 
   signIn=(email,password)=>{
   Meteor.loginWithPassword(email,password,(error,data)=>{
-console.log(email);
+      console.log(email);
     if(error){
       console.log(error);
       if(error.reason === 'User not found'){

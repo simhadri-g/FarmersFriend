@@ -2,7 +2,7 @@ import React from 'react';
 import {Text,View,ImageBackground,Dimensions,StyleSheet} from 'react-native';
 import {Input,Item,Form,Label,Button,Container,Content} from 'native-base';
 
-var pic = require('../assets/icons/landing.jpeg');
+var pic = require('../assets/icons/farmLand.jpg');
 var height = Dimensions.get('window').height;
 var width = Dimensions.get('window').width;
 
@@ -13,9 +13,10 @@ class SignIn extends React.Component{
     password:""
   }
   logIn=()=>{
-      console.log('button pressed');
+
       var email = this.state.email;
       var password = this.state.password;
+      console.log(email);
 
       this.props.signIn(email,password);
   }
@@ -28,7 +29,7 @@ class SignIn extends React.Component{
     source={pic}
     style={styles.contain}>
 
-            <Text style ={{fontSize:30,color:'#fff',marginLeft:'30%',fontWeight:'bold'}}>Signin Page</Text>
+            <Text style ={{fontSize:30,color:'#000',marginLeft:'30%',fontWeight:'normal'}}>Farmers Friend</Text>
             <Form>
                   <Item floatingLabel>
                             <Label>Email</Label>

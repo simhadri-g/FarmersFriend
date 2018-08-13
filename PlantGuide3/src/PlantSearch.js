@@ -4,54 +4,64 @@ import { Container, Header, Content,Input ,Item, Button, Icon} from 'native-base
 import LoadingPage from './Loading';
 import Meteor, {createContainer} from 'react-native-meteor';
 import PinchZoomView from 'react-native-pinch-zoom-view';
+import Croplist from './CropList';
 
-class PlantSearch extends React.Component{
-  state={
-    plantSearch:"",
-    val:"",
-    page:1
+const getSuggestions = (value, plants) => {
+    const inputValue = value.trim().toLowerCase();
+    const inputLength = inputValue.length;
+    console.log(inputValue);
+    return inputLength === 0 ? plants : plants.filter(plant =>
+   plant.title.toLowerCase().slice(0, inputLength) === inputValue);
+};
 
-  }
-  addPlant = ()=>{
+ class PlantSearch extends React.Component{
+    constructor(props) {
+      super(props);
+      this.state = {
+        value: '',
+        suggestions: [],
+        page:1
+      };
+
+
+ }
+  /*addPlant = ()=>{
     console.log('i do not knonw if its calling');
 		Meteor.call('Plants.add',this.state.val, (err,res)=>{
 			console.log('add function', err,res);
 		})
-	}
+	}*/
 
   searchPlant=()=>{
-    var name = this.state.plantSearch;
+    /*var name = this.state.value;
     var arr = this.state.val;
     arr = name
     this.setState({val:arr})
-    console.log('some data')
-    this.addPlant();
+    console.log(this.state.value);
+    this.addPlant();*/
+    const value=this.state.value;
+    const plants=this.props.Plants;
+    const filteredArray = getSuggestions(value,plants);
+    console.log(filteredArray);
 
   }
   renderBody=()=>{
 
       if(this.state.page===1)
       {
-        return(<LoadingPage  />);
+        return(<Croplist  />);
       }
       else if (this.state.page===2) {
            var image= this.props.Plants;
            console.log('show image '+image._id)
 return(
-				<View	 	>
-        <Image
-          source={{uri: "http://192.168.1.101:3000/"+image}}
-          style={{height: 200,width:50}}
-        />
-
-				</View>
+  <Croplist  />
 			)
 
-
       }
-      else{
+      /*else{
         return(<Text>Page Not loaded</Text>)
-      }
+    }*/
 
   }
 
@@ -66,9 +76,10 @@ return(
                   <Icon name="ios-search"
                   onPress={this.searchPlant}/>
                   <Input
-                  value = {this.state.plantSearch}
+                  value = {this.state.value}
                   placeholder="Search"
-                  onChangeText={(plantSearch)=>this.setState({plantSearch})}
+                  onChange={this.searchPlant}
+                  onChangeText={(value)=>this.setState({value})}
                    />
 
               </Item>
@@ -77,13 +88,7 @@ return(
               </Button>
           </Header>
           <Content>
-          <PinchZoomView>
-              <Text>
-                    {this.state.val}
-                    //Plant deltails will appear here
-              </Text>
               {this.renderBody()}
-          </PinchZoomView>
           </Content>
         </Container>
 </View>
@@ -96,8 +101,6 @@ export default createContainer(params=>{
 	Meteor.subscribe('Plants');
 
 	return{
-		Plants: Meteor.collection('Plants').find({}).length
-
-
+		Plants: Meteor.collection('Plants').find({})
 	};
 }, PlantSearch);
