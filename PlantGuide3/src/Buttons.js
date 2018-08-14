@@ -1,22 +1,27 @@
 import React, { Component } from 'react';
 import { Container, Header, Content, Button,Title,Body } from 'native-base';
 import {Text} from 'react-native';
-//import { createStackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import PlantSearch from './PlantSearch';
 import PredictionsScreen from './Predictions';
 import SellingScreen from './Selling';
 import Croplist from './CropList';
-
+import CropDetails from './cropDetails';
+import PredictedCrop from './PredictedOutput';
 
 import { Ionicons } from '@expo/vector-icons';
 import { createBottomTabNavigator } from 'react-navigation';
 
+const PredictionsStack = createStackNavigator({
+  Predictions: PredictionsScreen,
+  PredictionOutputScreen: PredictedCrop
 
+});
 
 const TabNav = createBottomTabNavigator(
   {
   //ButtonsScreen: { screen:RootStack},
-  Predictions:{ screen: PredictionsScreen},
+  Predictions:{ screen: PredictionsStack},
   PlantFindScreen: { screen: PlantSearch},
   Selling:{screen:SellingScreen},
 //  CropDirectory: {screen:Croplist}

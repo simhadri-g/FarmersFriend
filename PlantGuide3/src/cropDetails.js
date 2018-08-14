@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text,View} 'react-native';
+import {Text,View} from 'react-native';
 
 class CropDetails extends React.Component{
   render(){

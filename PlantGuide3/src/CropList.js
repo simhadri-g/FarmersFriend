@@ -4,6 +4,7 @@ import {Container, Header, Content, List, ListItem, Thumbnail,  Left, Body, Righ
 
 var pic = require('../assets/icons/landing.jpeg');
 
+
 class Croplist extends React.Component{
 
   constructor(props) {
@@ -48,6 +49,7 @@ class Croplist extends React.Component{
 
 
   render(){
+    var nav = this.props.navigation;
   return(
     <Container>
        <Header>
@@ -68,7 +70,8 @@ class Croplist extends React.Component{
                <Text note numberOfLines={2}>{item.email} , click view to see more</Text>
              </Body>
              <Right>
-               <Button rounded block backgroundColor='gray'>
+               <Button rounded block backgroundColor='gray'
+                onPress={() => nav.navigate('cropDetailScreen')}>
                  <Text style={{color:'white'}}>View</Text>
                </Button>
              </Right>

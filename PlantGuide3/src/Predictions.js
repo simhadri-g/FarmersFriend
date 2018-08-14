@@ -1,17 +1,33 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 import { Container, Header, Content, Form, Item, Input, Label ,Button,Body} from 'native-base';
+//import { navigationOptions } from 'react-navigation';
 
 class PredictionsScreen extends React.Component{
+
+  static navigationOptions = {
+    title: 'Enter Soil Data',
+    headerStyle: {
+
+      backgroundColor: '#f4511e',
+
+    },
+    headerTintColor: '#fff',
+    headerTitleStyle: {
+
+      fontWeight: 'bold',
+    },
+  };
+
+  /* render function, etc */
+
   render(){
     {
     return (
       <Container>
-        <Header>
-            <Body>
-                <Text style={{color:'#fff',fontSize:30}}>Enter Soil Data</Text>
-            </Body>
-        </Header>
+
+
+
         <Content>
           <Form>
             <Item floatingLabel>
@@ -46,6 +62,7 @@ class PredictionsScreen extends React.Component{
 
           </Form>
           <Button primary rounded block style = {{margin:10}}
+          onPress = {() => this.props.navigation.navigate('PredictionOutputScreen')}
 
           >
                 <Text style={{color:'#fff'}}> Submit </Text>
