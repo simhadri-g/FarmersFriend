@@ -4,7 +4,10 @@ import {Container, Header, Content, List, ListItem, Thumbnail,  Left, Body, Righ
 
 var pic = require('../assets/icons/landing.jpeg');
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 790c2212ab2e9f6393d0ec40b8025c89a112ab3b
 class Croplist extends React.Component{
 
   constructor(props) {
@@ -49,7 +52,10 @@ class Croplist extends React.Component{
 
 
   render(){
+<<<<<<< HEAD
     var nav = this.props.navigation;
+=======
+>>>>>>> 790c2212ab2e9f6393d0ec40b8025c89a112ab3b
   return(
     <Container>
        <Header>
@@ -70,8 +76,12 @@ class Croplist extends React.Component{
                <Text note numberOfLines={2}>{item.email} , click view to see more</Text>
              </Body>
              <Right>
+<<<<<<< HEAD
                <Button rounded block backgroundColor='gray'
                 onPress={() => nav.navigate('cropDetailScreen')}>
+=======
+               <Button rounded block backgroundColor='gray'>
+>>>>>>> 790c2212ab2e9f6393d0ec40b8025c89a112ab3b
                  <Text style={{color:'white'}}>View</Text>
                </Button>
              </Right>

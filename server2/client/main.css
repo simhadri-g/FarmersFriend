@@ -2,3 +2,17 @@ body {
   padding: 10px;
   font-family: sans-serif;
 }
+.new-plant{
+    margin-top: 2% ;
+  height:500px ;
+}
+.text-area{
+    resize :none ;
+  width :90% ;
+  height : 60% ;
+  font-size: 15px;
+}
+.text-title{
+    font-weight: bolder;
+    font-size: 15px;
+}
