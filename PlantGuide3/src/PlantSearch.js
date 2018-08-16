@@ -9,9 +9,22 @@ import Croplist from './CropList';
 const getSuggestions = (value, plants) => {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
-    console.log(inputValue);
-    return inputLength === 0 ? plants : plants.filter(plant =>
-   plant.title.toLowerCase().slice(0, inputLength) === inputValue);
+    var filteredArray=[];
+    if(inputLength === 0){
+         filteredArray=plants;
+    }
+    else{
+
+        for(i=0; i< plants.length; i++){
+            if(plants[i].title.toLowerCase().slice(0, inputLength) === inputValue){
+                filteredArray.push(plants[i]);
+        }
+                //console.log(plants[i].title.toLowerCase().slice(0, inputLength));
+                //filteredArray.append[plants[i]]
+
+        }
+    }
+    return (filteredArray);
 };
 
  class PlantSearch extends React.Component{
@@ -42,7 +55,7 @@ const getSuggestions = (value, plants) => {
     const value=this.state.value;
     const plants=this.props.Plants;
     const filteredArray = getSuggestions(value,plants);
-    console.log(filteredArray);
+    this.setState({array:filteredArray});
 
   }
   renderBody=()=>{
@@ -55,7 +68,7 @@ const getSuggestions = (value, plants) => {
            var image= this.props.Plants;
            console.log('show image '+image._id)
 return(
-  <Croplist  />
+  <Croplist />
 			)
 
       }
@@ -88,7 +101,7 @@ return(
               </Button>
           </Header>
           <Content>
-              {this.renderBody()}
+              <Croplist plants= {this.state.array}/>
           </Content>
         </Container>
 </View>

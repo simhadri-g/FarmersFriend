@@ -68,6 +68,7 @@ const result = da.filter(d=>d["email"] == (formatQuery));
 
 
   render(){
+      console.log(this.props);
   return(
     <Container>
     <Header searchBar rounded>
@@ -88,17 +89,22 @@ const result = da.filter(d=>d["email"] == (formatQuery));
         </Button>
     </Header>
        <Content>
+<<<<<<< HEAD
          <List  dataArray={this.state.fulldata}
+=======
+         <List  dataArray={this.props.plants}
+>>>>>>> 4d444b1a8c61b3f1c93e1f630db8e3cf1fb275dc
          renderRow={
            (item)=>
            <ListItem thumbnail>
              <Left>
-               <Thumbnail rounded source={{ uri: item.picture.thumbnail }} />
+             {item}
+               <Text>{item.title}</Text>
              </Left>
              <Body>
-               <Text>{item.name.first} {item.name.last}</Text>
-               <Text note numberOfLines={2}>{item.email} , click view to see more</Text>
+               <Text>{item.content} </Text>
              </Body>
+<<<<<<< HEAD
              <Right>
                <Button rounded block backgroundColor='gray' onPress = {() => this.props.navigation.navigate('CropDirDetails',{
                  userName: item.name.first,
@@ -108,6 +114,8 @@ const result = da.filter(d=>d["email"] == (formatQuery));
                  <Text style={{color:'white'}}>View</Text>
                </Button>
              </Right>
+=======
+>>>>>>> 4d444b1a8c61b3f1c93e1f630db8e3cf1fb275dc
            </ListItem>
          }>
 

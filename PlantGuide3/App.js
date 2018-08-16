@@ -5,7 +5,14 @@ import Meteor ,{createContainer,Accounts} from 'react-native-meteor';
 //import PlantSearch from './src/PlantSearch';
 import NavigationPage from './src/NavigationPage';
 
+<<<<<<< HEAD
 const SERVER_URL='ws://192.168.43.175:3000/websocket';
+=======
+const SERVER_URL='ws://192.168.0.3:3000/websocket';
+
+
+
+>>>>>>> 4d444b1a8c61b3f1c93e1f630db8e3cf1fb275dc
 
 export default class App extends React.Component {
   state={
