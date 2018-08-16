@@ -1,13 +1,9 @@
 import React from 'react';
 import {Text,View} from 'react-native';
-import {Container, Header, Content, List, ListItem, Thumbnail,  Left, Body, Right, Button } from 'native-base';
+import {Container, Header, Content, List, ListItem, Thumbnail,  Left, Body, Right, Button,Item,Input ,Icon} from 'native-base';
 
 var pic = require('../assets/icons/landing.jpeg');
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 790c2212ab2e9f6393d0ec40b8025c89a112ab3b
 class Croplist extends React.Component{
 
   constructor(props) {
@@ -19,12 +15,18 @@ class Croplist extends React.Component{
       page: 1,
       seed: 1,
       error: null,
-      refreshing: false
+      refreshing: false,
+      fulldata:[],
+      query:"",
+
+
     };
   }
 
   componentDidMount(){
     this.makeRemoteRequest();
+
+
   }
 
   makeRemoteRequest = () => {
@@ -36,7 +38,8 @@ class Croplist extends React.Component{
         .then(res => res.json())
         .then(res => {
           this.setState({
-            data: page === 1 ? res.results : [...this.state.data, ...res.results],
+            fulldata: page === 1 ? res.results : [...this.state.fulldata, ...res.results],
+            data: page === 1 ? res.results : [...this.state.fulldata, ...res.results],
             error: res.error || null,
             loading: false,
             refreshing: false
@@ -49,22 +52,43 @@ class Croplist extends React.Component{
 
 
 
+handelSearch=(text) =>{
+  const formatQuery = text.toLowerCase();
+  console.log("text query",formatQuery)
+const da = this.state.fulldata;
+console.log(da)
+const result = da.filter(d=>d["email"] == (formatQuery));
+
+  console.log("text",text)
+  console.log("result",result)
+  this.setState({query:text});
+}
+
+
 
 
   render(){
-<<<<<<< HEAD
-    var nav = this.props.navigation;
-=======
->>>>>>> 790c2212ab2e9f6393d0ec40b8025c89a112ab3b
   return(
     <Container>
-       <Header>
-            <Body>
-                <Text style={{color:'white'}}> Need to replace the json objects once we get json object for each crop </Text>
-            </Body>
-       </Header >
+    <Header searchBar rounded>
+        <Item>
+            <Icon name="ios-search"
+            //onPress={this.searchPlant}
+            />
+            <Input
+            value = {this.state.value}
+            placeholder="Search"
+            //onChange={this.searchPlant}
+            onChangeText={this.handelSearch}
+             />
+
+        </Item>
+        <Button transparent>
+            <Text>Search</Text>
+        </Button>
+    </Header>
        <Content>
-         <List  dataArray={this.state.data}
+         <List  dataArray={this.state.fulldata}
          renderRow={
            (item)=>
            <ListItem thumbnail>
@@ -76,12 +100,11 @@ class Croplist extends React.Component{
                <Text note numberOfLines={2}>{item.email} , click view to see more</Text>
              </Body>
              <Right>
-<<<<<<< HEAD
-               <Button rounded block backgroundColor='gray'
-                onPress={() => nav.navigate('cropDetailScreen')}>
-=======
-               <Button rounded block backgroundColor='gray'>
->>>>>>> 790c2212ab2e9f6393d0ec40b8025c89a112ab3b
+               <Button rounded block backgroundColor='gray' onPress = {() => this.props.navigation.navigate('CropDirDetails',{
+                 userName: item.name.first,
+                 email:item.email
+
+               })}>
                  <Text style={{color:'white'}}>View</Text>
                </Button>
              </Right>

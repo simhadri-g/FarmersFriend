@@ -1,13 +1,22 @@
 import React from 'react';
-import {View, Text} from 'react-native';
-<<<<<<< HEAD
-import { Container, Header, Content, Form, Item, Input, Label ,Button,Body} from 'native-base';
-//import { navigationOptions } from 'react-navigation';
+import {View, Text,TextInput} from 'react-native';
+
+import { Container, Header, Content, Form, Item, Input, Label ,Body,Button} from 'native-base';
+import Meteor, {createContainer} from 'react-native-meteor';
 
 class PredictionsScreen extends React.Component{
-
+    constructor(props) {
+    super(props);
+    this.state = {
+      AvMoisture: '',
+      AvDryMatter: '',
+      nitrogen: '',
+      potassium: '',
+      phosphorus: '',
+    };
+  }
   static navigationOptions = {
-    title: 'Enter Soil Data',
+    title: 'Enter soil details',
     headerStyle: {
 
       backgroundColor: '#f4511e',
@@ -19,39 +28,21 @@ class PredictionsScreen extends React.Component{
       fontWeight: 'bold',
     },
   };
-
-  /* render function, etc */
-
-=======
-import { Button } from 'react-native';
-import { Container, Header, Content, Form, Item, Input, Label ,Body} from 'native-base';
-import Meteor, {createContainer} from 'react-native-meteor';
-
-class PredictionsScreen extends React.Component{
-    constructor(props) {
-    super(props);
-    this.state = {
-      soilType: '',
-      pH: '',
-      nitrogen: '',
-      potassium: '',
-      phosphorous: '',
-    };
-  }
   handlePrediction = () => {
       console.log('prediction');
-      const { soilType, pH, nitrogen, potassium, phosphorous } = this.state;
-      const parameters={soilType, pH, nitrogen, potassium, phosphorous} ;
+
+      const { AvMoisture, AvDryMatter, nitrogen, potassium, phosphorus } = this.state;
+      const parameters={AvMoisture, AvDryMatter, nitrogen, potassium, phosphorus} ;
+
       Meteor.call('Predictions.addOne',parameters, ()=>{
       });
-      console.log(soilType);
-      console.log(pH);
+      console.log(AvMoisture);
+      console.log(AvDryMatter);
       console.log(nitrogen);
       console.log(potassium);
-      console.log(phosphorous);
+      console.log(phosphorus);
 
   }
->>>>>>> 790c2212ab2e9f6393d0ec40b8025c89a112ab3b
   render(){
     {
     return (
@@ -62,13 +53,13 @@ class PredictionsScreen extends React.Component{
         <Content>
           <Form>
             <Item floatingLabel>
-              <Label>Soil type</Label>
-              <Input onChangeText={(soilType) => this.setState({ soilType })}/>
+              <Label>Moisture %</Label>
+              <Input onChangeText={(AvMoisture) => this.setState({ AvMoisture })}/>
             </Item>
 
             <Item floatingLabel last>
-              <Label>pH </Label>
-              <Input onChangeText={(pH) => this.setState({ pH })}/>
+              <Label>Dry Matter% </Label>
+              <Input onChangeText={(AvDryMatter) => this.setState({ AvDryMatter })}/>
             </Item>
 
             <Item floatingLabel last>
@@ -77,28 +68,32 @@ class PredictionsScreen extends React.Component{
             </Item>
 
             <Item floatingLabel last>
-              <Label>Potassium % </Label>
+              <Label> Potassium % </Label>
               <Input onChangeText={(potassium) => this.setState({ potassium })}/>
             </Item>
 
             <Item floatingLabel last>
-              <Label>Phosphorous % </Label>
-              <Input onChangeText={(phosphorous) => this.setState({ phosphorous })}/>
+              <Label> Phosphorus % </Label>
+              <Input onChangeText={(phosphorus) => this.setState({ phosphorus })}/>
             </Item>
           </Form>
-<<<<<<< HEAD
+
+          <Button primary rounded block style = {{margin:10}}
+          onPress={this.handlePrediction}>
+          <Text style={{color:'#fff'}}>
+          Submit</Text>
+
+          </Button>
+
           <Button primary rounded block style = {{margin:10}}
           onPress = {() => this.props.navigation.navigate('PredictionOutputScreen')}
 
           >
-                <Text style={{color:'#fff'}}> Submit </Text>
+                <Text style={{color:'#fff'}}> Get results </Text>
           </Button>
-=======
-          <Button
-          onPress={this.handlePrediction}
-          title="Submit"
-          />
->>>>>>> 790c2212ab2e9f6393d0ec40b8025c89a112ab3b
+
+
+
         </Content>
       </Container>
     );

@@ -143,6 +143,7 @@ def Xcall(Xnew=[]):
     y2new=str(y2new)
     ReturnList.append(ynew)
     ReturnList.append(y2new)
+    print(ReturnList)
     return ReturnList    
 
 from flask import Flask, request, render_template,jsonify

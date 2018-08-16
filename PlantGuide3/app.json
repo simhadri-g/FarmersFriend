@@ -1,5 +1,14 @@
 {
   "expo": {
-    "sdkVersion": "27.0.0"
+    "name": "FarmersFriend",
+      "icon": "./assets/icons/appIcon.png",
+      "version": "1.0.0",
+
+      "sdkVersion": "27.0.0",
+    
+      "android": {
+        "package": "com.sg.FarmersFriend"
+      }
+
   }
 }

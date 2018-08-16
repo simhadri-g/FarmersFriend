@@ -6,16 +6,6 @@ import Meteor, {createContainer} from 'react-native-meteor';
 import PinchZoomView from 'react-native-pinch-zoom-view';
 import Croplist from './CropList';
 
-<<<<<<< HEAD
-class PlantSearch extends React.Component{
-  state={
-    plantSearch:"",
-    val:"",
-    page:1
-
-  }
-  addPlant = ()=>{
-=======
 const getSuggestions = (value, plants) => {
     const inputValue = value.trim().toLowerCase();
     const inputLength = inputValue.length;
@@ -36,7 +26,6 @@ const getSuggestions = (value, plants) => {
 
  }
   /*addPlant = ()=>{
->>>>>>> 790c2212ab2e9f6393d0ec40b8025c89a112ab3b
     console.log('i do not knonw if its calling');
 		Meteor.call('Plants.add',this.state.val, (err,res)=>{
 			console.log('add function', err,res);
@@ -67,10 +56,6 @@ const getSuggestions = (value, plants) => {
            console.log('show image '+image._id)
 return(
   <Croplist  />
-<<<<<<< HEAD
-
-=======
->>>>>>> 790c2212ab2e9f6393d0ec40b8025c89a112ab3b
 			)
 
       }
@@ -103,17 +88,7 @@ return(
               </Button>
           </Header>
           <Content>
-<<<<<<< HEAD
-          
-              <Text>
-                    {this.state.val}
-                    //Plant deltails will appear here
-              </Text>
               {this.renderBody()}
-
-=======
-              {this.renderBody()}
->>>>>>> 790c2212ab2e9f6393d0ec40b8025c89a112ab3b
           </Content>
         </Container>
 </View>
