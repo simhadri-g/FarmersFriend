@@ -5,7 +5,7 @@ import Meteor ,{createContainer,Accounts} from 'react-native-meteor';
 //import PlantSearch from './src/PlantSearch';
 import NavigationPage from './src/NavigationPage';
 
-const SERVER_URL='ws://192.168.225.174:3000/websocket';
+const SERVER_URL='ws://192.168.0.3:3000/websocket';
 
 
 

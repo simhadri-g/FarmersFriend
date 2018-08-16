@@ -48,6 +48,7 @@ class Croplist extends React.Component{
 
 
   render(){
+      console.log(this.props);
   return(
     <Container>
        <Header>
@@ -56,22 +57,17 @@ class Croplist extends React.Component{
             </Body>
        </Header >
        <Content>
-         <List  dataArray={this.state.data}
+         <List  dataArray={this.props.plants}
          renderRow={
            (item)=>
            <ListItem thumbnail>
              <Left>
-               <Thumbnail rounded source={{ uri: item.picture.thumbnail }} />
+             {item}
+               <Text>{item.title}</Text>
              </Left>
              <Body>
-               <Text>{item.name.first} {item.name.last}</Text>
-               <Text note numberOfLines={2}>{item.email} , click view to see more</Text>
+               <Text>{item.content} </Text>
              </Body>
-             <Right>
-               <Button rounded block backgroundColor='gray'>
-                 <Text style={{color:'white'}}>View</Text>
-               </Button>
-             </Right>
            </ListItem>
          }>
 
