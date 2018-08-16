@@ -28,16 +28,19 @@ const getSuggestions = (value, plants) => {
 };
 
  class PlantSearch extends React.Component{
+   
     constructor(props) {
       super(props);
       this.state = {
         value: '',
         suggestions: [],
-        page:1
+        page:1,
+
       };
 
 
  }
+
   /*addPlant = ()=>{
     console.log('i do not knonw if its calling');
 		Meteor.call('Plants.add',this.state.val, (err,res)=>{
@@ -55,14 +58,25 @@ const getSuggestions = (value, plants) => {
     const value=this.state.value;
     const plants=this.props.Plants;
     const filteredArray = getSuggestions(value,plants);
-    this.setState({array:filteredArray});
+if (filteredArray.length != 0 ){
+  console.log("filteredArray not zero")
+  this.setState({array:filteredArray});
+
+
+}
+
+else{
+    this.setState({array:plants});
+}
+
+
 
   }
   renderBody=()=>{
 
       if(this.state.page===1)
       {
-        return(<Croplist  />);
+        return(<Croplist navigation = {this.props.navigation} />);
       }
       else if (this.state.page===2) {
            var image= this.props.Plants;
@@ -80,7 +94,9 @@ return(
 
   render(){
     console.log('text'+this.props.Plants);
+    console.log("filteredArray not zero on Start")
     return(
+
 
    <View  style={{flex: 1,flexDirection:'row'}}>
    <Container>
@@ -101,7 +117,7 @@ return(
               </Button>
           </Header>
           <Content>
-              <Croplist plants= {this.state.array}/>
+              <Croplist plants= {this.state.array} unfiltered = {this.props.Plants}  navigation = {this.props.navigation} />
           </Content>
         </Container>
 </View>

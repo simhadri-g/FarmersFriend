@@ -147,10 +147,14 @@ def Xcall(Xnew=[]):
     return ReturnList    
 
 from flask import Flask, request, render_template,jsonify
+from flask.ext import restful
 app = Flask(__name__)
+api = restful.Api(app)
+
 
 
 @app.route('/')
+class ParseText(restful.Resoutce):
 def gg():
     return render_template('predictedCrop.html',data=ReturnList)
 

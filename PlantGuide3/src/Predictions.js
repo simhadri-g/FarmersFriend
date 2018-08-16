@@ -19,7 +19,7 @@ class PredictionsScreen extends React.Component{
     title: 'Enter soil details',
     headerStyle: {
 
-      backgroundColor: '#f4511e',
+      backgroundColor: '#a4c639',
 
     },
     headerTintColor: '#fff',

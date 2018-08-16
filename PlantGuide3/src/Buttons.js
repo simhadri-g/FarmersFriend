@@ -17,10 +17,12 @@ const PredictionsStack = createStackNavigator({
   Predictions: PredictionsScreen,
   PredictionOutputScreen: PredictedCrop
 
+
 });
 
-const CroplistStack = createStackNavigator({
-  CropDirectory: Croplist,
+const PlantSearchStack = createStackNavigator({
+PlantFindScreen:PlantSearch,
+  CropDirectory: Croplist ,
   CropDirDetails:CropDetails,
 
 });
@@ -29,9 +31,9 @@ const TabNav = createBottomTabNavigator(
   {
   //ButtonsScreen: { screen:RootStack},
   Predictions:{ screen: PredictionsStack},
-  PlantFindScreen: { screen: PlantSearch},
+  PlantFindScreen: { screen: PlantSearchStack},
   Selling:{screen:SellingScreen},
-  CropDirectory: {screen:CroplistStack}
+  // CropDirectory: {screen:CroplistStack}
 
 },
 {
@@ -39,10 +41,10 @@ navigationOptions: ({ navigation }) => ({
   tabBarIcon: ({ focused, tintColor }) => {
     const { routeName } = navigation.state;
     let iconName;
-    if (routeName === 'CropDirectory') {
-      iconName = `ios-navigate${focused ? '' : '-outline'}`;
-    }
-   else if (routeName === 'PlantFindScreen') {
+    // if (routeName === 'CropDirectory') {
+      // iconName = `ios-navigate${focused ? '' : '-outline'}`;
+    // }
+   if (routeName === 'PlantFindScreen') {
       iconName = `ios-search${focused ? '' : '-outline'}`;
     }
     else if (routeName === 'Predictions') {
@@ -69,6 +71,6 @@ swipeEnabled: false,
 
 export default class App extends React.Component{
   render(){
-    return(<TabNav/>);
+    return(<TabNav />);
   }
 }
