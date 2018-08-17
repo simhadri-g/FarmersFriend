@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import  AccountsServer  from 'meteor/accounts-base';
 import {Plants} from '../imports/collections/Plants';
 import {Predictions} from '../imports/collections/predictions';
 var fs = Npm.require("fs");
@@ -8,7 +9,9 @@ Meteor.startup(() => {
   // code to run on server at startup
   console.log('hello this is our console '+process.env.PWD)
 });
-
+Predictions.after.insert(function(userId, doc) {
+    console.log('hooks');
+});
 Meteor.methods({
   'Plants.add':function(plant){
     // var user = this.userId;
@@ -22,8 +25,10 @@ Meteor.methods({
 });
 Meteor.methods({
   'Predictions.addOne': ( parameters ) => {
-      console.log(parameters);
-      Predictions.insert({ parameters });
+
+      const userId= Meteor.userId();
+      console.log(parameters,userId);
+      Predictions.insert({ parameters,userId });
 
   },
 });
