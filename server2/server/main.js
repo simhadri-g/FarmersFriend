@@ -10,7 +10,12 @@ Meteor.startup(() => {
   console.log('hello this is our console '+process.env.PWD)
 });
 Predictions.after.insert(function(userId, doc) {
+   //Meteor.http.get("http://127.0.0.1:5000/test");
     console.log('hooks');
+    console.log("docs",doc)
+    // const result = HTTP.call('GET','http://127.0.0.1:5000',{
+    //     params:{doc.parameters }
+    //   });
 });
 Meteor.methods({
   'Plants.add':function(plant){

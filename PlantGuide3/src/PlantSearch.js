@@ -28,7 +28,7 @@ const getSuggestions = (value, plants) => {
 };
 
  class PlantSearch extends React.Component{
-   
+
     constructor(props) {
       super(props);
       this.state = {
@@ -41,20 +41,10 @@ const getSuggestions = (value, plants) => {
 
  }
 
-  /*addPlant = ()=>{
-    console.log('i do not knonw if its calling');
-		Meteor.call('Plants.add',this.state.val, (err,res)=>{
-			console.log('add function', err,res);
-		})
-	}*/
+
 
   searchPlant=()=>{
-    /*var name = this.state.value;
-    var arr = this.state.val;
-    arr = name
-    this.setState({val:arr})
-    console.log(this.state.value);
-    this.addPlant();*/
+
     const value=this.state.value;
     const plants=this.props.Plants;
     const filteredArray = getSuggestions(value,plants);
@@ -72,25 +62,6 @@ else{
 
 
   }
-  renderBody=()=>{
-
-      if(this.state.page===1)
-      {
-        return(<Croplist navigation = {this.props.navigation} />);
-      }
-      else if (this.state.page===2) {
-           var image= this.props.Plants;
-           console.log('show image '+image._id)
-return(
-  <Croplist />
-			)
-
-      }
-      /*else{
-        return(<Text>Page Not loaded</Text>)
-    }*/
-
-  }
 
   render(){
     console.log('text'+this.props.Plants);
@@ -100,7 +71,7 @@ return(
 
    <View  style={{flex: 1,flexDirection:'row'}}>
    <Container>
-          <Header searchBar rounded>
+          <Header searchBar rounded style={{'backgroundColor':'#1B5E20'}}>
               <Item>
                   <Icon name="ios-search"
                   onPress={this.searchPlant}/>

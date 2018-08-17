@@ -19,7 +19,7 @@ class PredictionsScreen extends React.Component{
     title: 'Enter soil details',
     headerStyle: {
 
-      backgroundColor: '#a4c639',
+      backgroundColor: '#1B5E20',
 
     },
     headerTintColor: '#fff',
@@ -46,7 +46,7 @@ class PredictionsScreen extends React.Component{
   render(){
     {
     return (
-      <Container>
+      <Container >
 
 
 
@@ -78,18 +78,18 @@ class PredictionsScreen extends React.Component{
             </Item>
           </Form>
 
-          <Button primary rounded block style = {{margin:10}}
+          <Button primary rounded block style = {{margin:10,'backgroundColor':'#1B5E20'}}
           onPress={this.handlePrediction}>
-          <Text style={{color:'#fff'}}>
+          <Text style={{color:'#fff','fontSize':15}}>
           Submit</Text>
 
           </Button>
 
-          <Button primary rounded block style = {{margin:10}}
+          <Button primary rounded block style = {{margin:10,'backgroundColor':'#1B5E20'}}
           onPress = {() => this.props.navigation.navigate('PredictionOutputScreen')}
 
           >
-                <Text style={{color:'#fff'}}> Get results </Text>
+                <Text style={{color:'#fff','fontSize':15}}> Get results </Text>
           </Button>
 
 

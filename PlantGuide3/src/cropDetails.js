@@ -1,12 +1,13 @@
 import React from 'react';
 import {Text,View} from 'react-native';
+import {Container,Content} from 'native-base';
 
 class CropDetails extends React.Component{
   static navigationOptions = {
     title: 'Cultivation guide',
     headerStyle: {
 
-      backgroundColor: '#a4c639',
+      backgroundColor: '#1B5E20',
 
     },
     headerTintColor: '#fff',
@@ -18,18 +19,20 @@ class CropDetails extends React.Component{
   render(){
 
     const { navigation } = this.props;
-   const title = navigation.getParam('title', 'NO-ID');
-   const content = navigation.getParam('content', 'some default value');
+   const title = navigation.getParam('title', 'Not loaded');
+   const content = navigation.getParam('content', 'check database');
+   const price = navigation.getParam('price','N/A');
 
 
     return(
-      <View>
-            <Text>
-                    crop details will appear here
-            </Text>
-            <Text>Crops: {JSON.stringify(title)}</Text>
-       <Text>Dtails: {JSON.stringify(content)}</Text>
-      </View>
+      <Container>
+        <Content>
+
+            <Text style={{'fontSize':20,'fontWeight':'bold','color':'#000080','margin':5}}> {JSON.parse(JSON.stringify(title))} Farming Guide</Text>
+            <Text style={{'fontSize':20,'fontWeight':'bold','color':'#ff0000','margin':5}}> Market Price:{JSON.parse(JSON.stringify(price))}</Text>
+            <Text style={{'fontSize':15,'fontWeight':'bold','margin':5}}> Details:{JSON.parse(JSON.stringify(content))}</Text>
+       </Content>
+      </Container>
     );
   }
 }

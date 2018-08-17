@@ -22,10 +22,10 @@ class Croplist extends React.Component{
   componentDidMount(){
     this.listArray()
  }
-  
+
 listArray=()=>{
   if(this.props.plants===undefined){
-    console.log("In listArray  when empty")
+    console.log("In listArray  when empty") 
     return(this.props.unfiltered);
   }
   else{
@@ -38,7 +38,7 @@ listArray=()=>{
   render(){
     //  console.log("the CropList :",this.props);
       console.log("the CropList 2:",this.props.plants);
-      console.log("the CropList unfiltered:",this.props.unfiltered);
+       console.log("the CropList unfiltered:",this.props.unfiltered);
 
 console.log("user data",this.state.data)
   return(
@@ -52,15 +52,16 @@ console.log("user data",this.state.data)
            <ListItem   >
 
              <Body>
-               <Text>{item.title} </Text>
-               <Text note numberOfLines={2}>{item.content} , click view to see more</Text>
+               <Text style={{'fontSize':20,'fontWeight':'bold'}}>{item.title} </Text>
+               <Text style={{'fontSize':15,'color':'#ff0000'}} note numberOfLines={2}>Market price: {item.price} </Text>
              </Body>
              <Right>
-               <Button rounded block backgroundColor='gray' onPress={() => this.props.navigation.navigate('CropDirDetails',{
+               <Button rounded block style={{'backgroundColor':'#1B5E20'}} onPress={() => this.props.navigation.navigate('CropDirDetails',{
                  title:item.title,
+                 price:item.price,
                  content:item.content
                })}>
-                 <Text style={{color:'white'}}>View</Text>
+                 <Text style={{color:'white'}}>View </Text>
                </Button>
              </Right>
 
