@@ -8,7 +8,7 @@ import Croplist from './CropList';
 
 const getSuggestions = (value, plants) => {
     const inputValue = value.trim().toLowerCase();
-    const inputLength = inputValue.length;
+    const inputLength = inputValue.length;  
     var filteredArray=[];
     if(inputLength === 0){
          filteredArray=plants;
@@ -29,6 +29,7 @@ const getSuggestions = (value, plants) => {
 
  class PlantSearch extends React.Component{
 
+
     constructor(props) {
       super(props);
       this.state = {
@@ -40,6 +41,7 @@ const getSuggestions = (value, plants) => {
 
 
  }
+
 
 
 
@@ -62,6 +64,7 @@ else{
 
 
   }
+
 
   render(){
     console.log('text'+this.props.Plants);

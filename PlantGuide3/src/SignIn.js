@@ -16,7 +16,7 @@ class SignIn extends React.Component{
 
       var email = this.state.email;
       var password = this.state.password;
-      console.log(email);
+      console.log(email); 
 
       this.props.signIn(email,password);
   }
@@ -29,7 +29,7 @@ class SignIn extends React.Component{
     source={pic}
     style={styles.contain}>
 
-            <Text style ={{fontSize:30,color:'#000',marginLeft:'30%',fontWeight:'normal'}}>Farmers Friend</Text>
+            <Text style ={{'fontSize':40,'color':'green','textAlign':'center','marginTop':90,'fontWeight':'bold'}}>Farmer's Assistant</Text>
             <Form>
                   <Item floatingLabel>
                             <Label>Email</Label>
@@ -42,7 +42,7 @@ class SignIn extends React.Component{
                   <Item floatingLabel>
                           <Label>Password</Label>
                           <Input
-                          style={{}}
+                          style={{}}s
                           autoCorrect={false}
                           onChangeText={(password)=>this.setState({password})}
                           secureTextEntry
@@ -52,8 +52,7 @@ class SignIn extends React.Component{
             </Form>
             <View style={{margin:10}}>
                   <Button
-                      primary
-                      block
+                    primary rounded block style = {{margin:10,'backgroundColor':'#1B5E20'}}
                       onPress={this.logIn}>
                           <Text style={{color:'#fff'}}>Sign In / Sign Up</Text>
 

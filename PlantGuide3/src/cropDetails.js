@@ -19,6 +19,7 @@ class CropDetails extends React.Component{
   render(){
 
     const { navigation } = this.props;
+    console.log('navigations',navigation);
    const title = navigation.getParam('title', 'Not loaded');
    const content = navigation.getParam('content', 'check database');
    const price = navigation.getParam('price','N/A');

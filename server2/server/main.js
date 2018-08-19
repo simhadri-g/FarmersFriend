@@ -14,8 +14,12 @@ Predictions.after.insert(function(userId, doc) {
     //Meteor.http.get("http://127.0.0.1:5000/test");
     console.log('hooks');
     console.log("docs",doc);
-    const result = HTTP.call('GET','http://127.0.0.1:5000/',{params: {parameters:doc.parameters } });
+    var result = HTTP.call('GET','http://127.0.0.1:5000/',{params: {parameters:doc.parameters } });
+    result = result.content;
     console.log("result",result)
+
+    const _id=doc._id ;
+    Predictions.update(_id,{ $set: {result} });
 
 });
 
@@ -35,7 +39,9 @@ Meteor.methods({
 
       const userId= Meteor.userId();
       console.log(parameters,userId);
-      Predictions.insert({ parameters,userId });
+    //  Predictions.insert({ parameters,userId });
+    const id=Predictions.insert({ parameters,userId });
+    return(id);
 
   },
 });

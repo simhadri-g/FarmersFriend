@@ -21,7 +21,7 @@ class Croplist extends React.Component{
 
   componentDidMount(){
     this.listArray()
- } 
+ }
 
 listArray=()=>{
   if(this.props.plants===undefined){
@@ -35,12 +35,13 @@ listArray=()=>{
 }
 
 
+
   render(){
     //  console.log("the CropList :",this.props);
-      console.log("the CropList 2:",this.props.plants);
-       console.log("the CropList unfiltered:",this.props.unfiltered);
+      //console.log("the CropList 2:",this.props.plants);
+       //console.log("the CropList unfiltered:",this.props.unfiltered);
 
-console.log("user data",this.state.data)
+//console.log("user data",this.state.data)
   return(
 
     <Container>

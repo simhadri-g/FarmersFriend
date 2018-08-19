@@ -15,7 +15,8 @@ import { createBottomTabNavigator } from 'react-navigation';
 
 const PredictionsStack = createStackNavigator({
   Predictions: PredictionsScreen,
-  PredictionOutputScreen: PredictedCrop
+  PredictionOutputScreen: PredictedCrop,
+  
 
 
 });

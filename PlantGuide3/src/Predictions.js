@@ -16,7 +16,7 @@ class PredictionsScreen extends React.Component{
     };
   }
   static navigationOptions = {
-    title: 'Enter soil details',
+    title: 'SOIL NATURE',
     headerStyle: {
 
       backgroundColor: '#1B5E20',
@@ -33,10 +33,16 @@ class PredictionsScreen extends React.Component{
 
       const { AvMoisture, nitrogen, phosphorus, potassium,  AvDryMatter} = this.state;
       const parameters={AvMoisture,  nitrogen,phosphorus, potassium,  AvDryMatter,} ;
+      Meteor.call('Predictions.addOne',parameters, (err,res)=>{
+        console.log(res);
+        this.props.navigation.navigate('PredictionOutputScreen',{
+          id:res,
 
-      Meteor.call('Predictions.addOne',parameters, ()=>{
+        });
       });
-      this.props.navigation.navigate('PredictionOutputScreen');
+
+      //console.log('id',id);
+
       console.log(AvMoisture);
       console.log(AvDryMatter);
       console.log(nitrogen);
@@ -52,6 +58,8 @@ class PredictionsScreen extends React.Component{
 
 
         <Content>
+
+          <Text  style={{'color':'red','fontSize':20, 'fontWeight':'bold','margin':10}}> Plese enter the soil details below :</Text>
           <Form>
             <Item floatingLabel>
               <Label>Moisture %</Label>
@@ -91,7 +99,14 @@ class PredictionsScreen extends React.Component{
 
           </Button>
 
-
+          <Text  style={{'color':'blue','fontSize':20,'fontWeight':'bold','margin':10}}> Instructions :</Text>
+          <Text style={{'color':'#000','fontSize':15,'margin':10}}>   Enter the the values of :{'\n'} {'\n'}
+          1) Average soil moisture % {'\n'}
+          2) Average Nitrogen (N) % {'\n'}
+          3) Average Phosphorus (P) % {'\n'}
+          4) Average Postassium (K) % {'\n'}
+          5) Average Dry matter % {'\n'} {'\n'}
+          obtained from the soil  test and hit submit to get crop prediction. </Text>
 
 
 
