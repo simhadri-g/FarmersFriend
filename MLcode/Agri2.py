@@ -134,7 +134,7 @@ ReturnList=[]
 def Xcall(Xnew=[]):
     
 
-    
+    ReturnList=[]
     Xnew=np.array(Xnew)
     Xnew=Xnew.reshape(1,-1)
     Xnew=sc.transform(Xnew)
@@ -146,22 +146,59 @@ def Xcall(Xnew=[]):
     print(ReturnList)
     return ReturnList    
 
-from flask import Flask, request, render_template,jsonify
-from flask.ext import restful
+import flask
+from flask import Flask, request, render_template,jsonify, redirect,url_for
 app = Flask(__name__)
-api = restful.Api(app)
+app2=Flask(__name__)
 
+arr =[]
 
-
-@app.route('/')
-class ParseText(restful.Resoutce):
+@app.route('/', methods=['GET'])
 def gg():
-    return render_template('predictedCrop.html',data=ReturnList)
+    #print(params)
+    #print(params)
+    arr = []
+    AvMo = (request.args.get('parameters[AvMoisture]'))
+    AvDry = (request.args.get('parameters[AvDryMatter]'))
+    AvN = (request.args.get('parameters[nitrogen]'))
+    AvK = (request.args.get('parameters[potassium]'))
+    AvP = (request.args.get('parameters[phosphorus]'))
+    
+   # print(type(language))
+    print('AV Moisture = ',AvMo,'Av Dry =' ,AvDry,'Av Nitro =',AvN )
+    print(type(AvMo))
+    print(AvK)
+    print(AvP)
+    arr = [AvMo,AvN,AvP,AvK,AvDry]
+    #arr1  = list(map(lambda x: int(x),arr))
+    #print(arr1, arr)
+    if  AvK!=None:
+        print("X called")
+        ReturnList = (Xcall(arr))
+        result = [ReturnList[0][0],ReturnList[1]]
+        #print (ReturnList)
+        
+        #return flask.redirect(flask.url_for('result'),res)
+        #
+        return jsonify(result)
+    else:    
+        print("print something")
+        return "hello"
+    
+    
+    
+@app.route('/result/<res>')
+def result(res):
+    print("in welcome")
+    return "welcome"
 
 if __name__ == '__main__':
-   Xcall([9.7,2.4971,0.267857,1,89.6])
+   
+   print(arr)
    app.run()
-
+#   print("Xcall not running",arr)
+#   Xcall(arr)
+#   
 
 
 

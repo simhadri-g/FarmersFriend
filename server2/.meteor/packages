@@ -22,3 +22,4 @@ accounts-base                 # built in oAuth
 npm-bcrypt
 static-html
 matb33:collection-hooks
+http

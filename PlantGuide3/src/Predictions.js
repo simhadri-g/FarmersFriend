@@ -31,11 +31,12 @@ class PredictionsScreen extends React.Component{
   handlePrediction = () => {
       console.log('prediction');
 
-      const { AvMoisture, AvDryMatter, nitrogen, potassium, phosphorus } = this.state;
-      const parameters={AvMoisture, AvDryMatter, nitrogen, potassium, phosphorus} ;
+      const { AvMoisture, nitrogen, phosphorus, potassium,  AvDryMatter} = this.state;
+      const parameters={AvMoisture,  nitrogen,phosphorus, potassium,  AvDryMatter,} ;
 
       Meteor.call('Predictions.addOne',parameters, ()=>{
       });
+      this.props.navigation.navigate('PredictionOutputScreen');
       console.log(AvMoisture);
       console.log(AvDryMatter);
       console.log(nitrogen);
@@ -57,10 +58,7 @@ class PredictionsScreen extends React.Component{
               <Input onChangeText={(AvMoisture) => this.setState({ AvMoisture })}/>
             </Item>
 
-            <Item floatingLabel last>
-              <Label>Dry Matter% </Label>
-              <Input onChangeText={(AvDryMatter) => this.setState({ AvDryMatter })}/>
-            </Item>
+
 
             <Item floatingLabel last>
               <Label>Nitrogen %</Label>
@@ -68,14 +66,22 @@ class PredictionsScreen extends React.Component{
             </Item>
 
             <Item floatingLabel last>
+              <Label> Phosphorus % </Label>
+              <Input onChangeText={(phosphorus) => this.setState({ phosphorus })}/>
+            </Item>
+
+            <Item floatingLabel last>
               <Label> Potassium % </Label>
               <Input onChangeText={(potassium) => this.setState({ potassium })}/>
             </Item>
 
+
+
             <Item floatingLabel last>
-              <Label> Phosphorus % </Label>
-              <Input onChangeText={(phosphorus) => this.setState({ phosphorus })}/>
+              <Label>Dry Matter% </Label>
+              <Input onChangeText={(AvDryMatter) => this.setState({ AvDryMatter })}/>
             </Item>
+
           </Form>
 
           <Button primary rounded block style = {{margin:10,'backgroundColor':'#1B5E20'}}
@@ -85,12 +91,7 @@ class PredictionsScreen extends React.Component{
 
           </Button>
 
-          <Button primary rounded block style = {{margin:10,'backgroundColor':'#1B5E20'}}
-          onPress = {() => this.props.navigation.navigate('PredictionOutputScreen')}
 
-          >
-                <Text style={{color:'#fff','fontSize':15}}> Get results </Text>
-          </Button>
 
 
 

@@ -8,7 +8,7 @@ Created on Wed Aug 15 16:03:29 2018
 from sklearn.externals import joblib
 import numpy as np
 from sklearn.preprocessing import StandardScaler 
-i
+
 sc = StandardScaler()
 
 cropClf = joblib.load('crop.pkl') 
@@ -21,32 +21,64 @@ def Xcall(Xnew=[]):
     Xnew=sc.fit_transform(Xnew)
     ynew=yieldReg.predict(Xnew)
     y2new=cropClf.predict(Xnew)
+    print(cropClf.predict_proba(Xnew))
     y2new=str(y2new)
     ReturnList.append(ynew)
     ReturnList.append(y2new)
     print(ReturnList[0][0],",",ReturnList[1])
     return ReturnList    
 
-from flask import Flask, request, render_template,jsonify
-from flask_restful
+
+
+import flask
+from flask import Flask, request, render_template,jsonify, redirect,url_for
 app = Flask(__name__)
-api = restful.Api(app)
+app2=Flask(__name__)
 
+arr =[]
 
-class ParseText(restful.Resource):
-   def gg():
-    return render_template('predictedCrop.html',data=ReturnList)
-
-api.add_resource(ParseText, '/<string:text>')
+@app.route('/', methods=['GET'])
+def gg():
+    #print(params)
+    #print(params)
+    arr = []
+    AvMo = request.args.get('parameters[AvMoisture]')
+    AvDry = request.args.get('parameters[AvDryMatter]')
+    AvN = request.args.get('parameters[nitrogen]')
+    AvK = request.args.get('parameters[potassium]')
+    AvP = request.args.get('parameters[phosphorus]')
     
-#@app.route('/')
-
-
+   # print(type(language))
+    print('AV Moisture = ',AvMo,'Av Dry =' ,AvDry,'Av Nitro =',AvN )
+    
+    print(AvK)
+    print(AvP)
+    arr = [AvMo,AvN,AvP,AvK,AvDry]
+    if  AvK!=None:
+        print("X called")
+        ReturnList = Xcall(arr)
+      
+        print (ReturnList)
+        #return flask.redirect(flask.url_for('result'))
+        return render_template('predictedCrop.html',data=ReturnList)
+    else:    
+        print("print something")
+        return ("hello")
+    
+    
+    
+@app.route('/result')
+def result():
+    print("in welcome")
+    return "welcome"
 
 if __name__ == '__main__':
-   Xcall([9.7,2.4971,0.267857,1,89.6])
-   app.run(debug=False)
-   parse=ParseText()
+   
+   print(arr)
+   app.run()
+#   print("Xcall not running",arr)
+#   Xcall(arr)
+#   
 
 
 

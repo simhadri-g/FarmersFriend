@@ -21,11 +21,11 @@ class Croplist extends React.Component{
 
   componentDidMount(){
     this.listArray()
- }
+ } 
 
 listArray=()=>{
   if(this.props.plants===undefined){
-    console.log("In listArray  when empty") 
+    console.log("In listArray  when empty")
     return(this.props.unfiltered);
   }
   else{
