@@ -140,7 +140,7 @@ def Xcall(Xnew=[]):
     Xnew=sc.transform(Xnew)
     ynew=regressor.predict(Xnew)
     y2new=classifier.predict(Xnew)
-    y2new=str(y2new)
+    y2new=(y2new[0])
     ReturnList.append(ynew)
     ReturnList.append(y2new)
     print(ReturnList)
@@ -175,9 +175,9 @@ def gg():
     if  AvK!=None:
         print("X called")
         ReturnList = (Xcall(arr))
-        result = [ReturnList[0][0],ReturnList[1]]
+        result = [str(ReturnList[0][0]),ReturnList[1]]
         #print (ReturnList)
-        
+        print(result)
         #return flask.redirect(flask.url_for('result'),res)
         #
         return jsonify(result)
@@ -187,10 +187,6 @@ def gg():
     
     
     
-@app.route('/result/<res>')
-def result(res):
-    print("in welcome")
-    return "welcome"
 
 if __name__ == '__main__':
    

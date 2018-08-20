@@ -1,6 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import  AccountsServer  from 'meteor/accounts-base';
 import {Plants} from '../imports/collections/Plants';
+import {Results} from '../imports/collections/results';
 import {Predictions} from '../imports/collections/predictions';
 import { HTTP } from 'meteor/http';
 var fs = Npm.require("fs");
@@ -16,10 +17,14 @@ Predictions.after.insert(function(userId, doc) {
     console.log("docs",doc);
     var result = HTTP.call('GET','http://127.0.0.1:5000/',{params: {parameters:doc.parameters } });
     result = result.content;
-    console.log("result",result)
+    var valu = result.split('"');
+    console.log("result",valu[1],valu[3])
+    const yeild=valu[1];
+    const crop=valu[3];
+    const result_pred={yeild,crop};
+    const predictionId=doc._id ;
+    Results.insert({ predictionId,result_pred });
 
-    const _id=doc._id ;
-    Predictions.update(_id,{ $set: {result} });
 
 });
 
