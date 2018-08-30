@@ -2,6 +2,9 @@ import React from 'react';
 import {Text,View} from 'react-native';
 import {Container,Content} from 'native-base';
 
+
+
+
 class CropDetails extends React.Component{
   static navigationOptions = {
     title: 'Cultivation guide',
@@ -26,12 +29,14 @@ class CropDetails extends React.Component{
 
 
     return(
-      <Container>
+      <Container style={{backgroundColor:'#99ff99'}}>
         <Content>
+
 
             <Text style={{'fontSize':20,'fontWeight':'bold','color':'#000080','margin':5}}> {JSON.parse(JSON.stringify(title))} Farming Guide</Text>
             <Text style={{'fontSize':20,'fontWeight':'bold','color':'#ff0000','margin':5}}> Market Price:{JSON.parse(JSON.stringify(price))}</Text>
             <Text style={{'fontSize':15,'fontWeight':'bold','margin':5}}> Details:{JSON.parse(JSON.stringify(content))}</Text>
+
        </Content>
       </Container>
     );

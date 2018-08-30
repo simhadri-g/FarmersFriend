@@ -1,9 +1,10 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, View,Image} from 'react-native';
 import {Container,Content} from 'native-base';
 import Meteor, {createContainer} from 'react-native-meteor';
 
 import LoadingResult from './LoadResult';
+var pic2 = require('../assets/icons/appIcon.png');
 
 class PredictedCrop extends React.Component{
 
@@ -12,19 +13,7 @@ class PredictedCrop extends React.Component{
  }
 
 
-  static navigationOptions = {
-    title: 'Predicted Crops',
-    headerStyle: {
-
-      backgroundColor: '#f4511e',
-
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-
-      fontWeight: 'bold',
-    },
-  };
+  
 
 
   resArr=()=>{
@@ -61,6 +50,7 @@ class PredictedCrop extends React.Component{
             <Text  style={{'color':'blue','fontSize':15,'fontWeight':'bold','margin':10}}> How it works :</Text>
             <Text style={{'color':'gray','fontSize':15,'margin':10}}>   The machine learing model based on decision tree, takes in the Average soil moisture, Dry matter and NPK values in % as input and determines
             the crop that yields maxium yield for the given soil conditions.   </Text>
+            <Image source={pic2} style={{width:'100%',height:400}}/>
         </Content>
       </Container>
     );

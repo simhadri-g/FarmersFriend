@@ -1,8 +1,11 @@
 import React from 'react';
-import {View, Text,TextInput} from 'react-native';
+import {View, Text,TextInput,ImageBackground,Dimensions} from 'react-native';
 
 import { Container, Header, Content, Form, Item, Input, Label ,Body,Button} from 'native-base';
 import Meteor, {createContainer} from 'react-native-meteor';
+var pic1 = require('../assets/icons/soil.jpg');
+
+var width = Dimensions.get('window').width;
 
 class PredictionsScreen extends React.Component{
     constructor(props) {
@@ -53,41 +56,46 @@ class PredictionsScreen extends React.Component{
   render(){
     {
     return (
+
       <Container >
 
 
 
         <Content>
+        <ImageBackground
+        source={pic1}
+        style={{width:width,height:'100%'}}
+        >
 
           <Text  style={{'color':'red','fontSize':20, 'fontWeight':'bold','margin':10}}> Plese enter the soil details below :</Text>
           <Form>
             <Item floatingLabel>
-              <Label>Moisture %</Label>
-              <Input onChangeText={(AvMoisture) => this.setState({ AvMoisture })}/>
+              <Label style={{color:'white'}}>Moisture %</Label>
+              <Input style={{color:'white'}} onChangeText={(AvMoisture) => this.setState({ AvMoisture })}/>
             </Item>
 
 
 
             <Item floatingLabel last>
-              <Label>Nitrogen %</Label>
-              <Input onChangeText={(nitrogen) => this.setState({ nitrogen })}/>
+              <Label style={{color:'white'}}>Nitrogen %</Label>
+              <Input style={{color:'white'}} onChangeText={(nitrogen) => this.setState({ nitrogen })}/>
             </Item>
 
             <Item floatingLabel last>
-              <Label> Phosphorus % </Label>
-              <Input onChangeText={(phosphorus) => this.setState({ phosphorus })}/>
+              <Label style={{color:'white'}}> Phosphorus % </Label>
+              <Input style={{color:'white'}} onChangeText={(phosphorus) => this.setState({ phosphorus })}/>
             </Item>
 
             <Item floatingLabel last>
-              <Label> Potassium % </Label>
-              <Input onChangeText={(potassium) => this.setState({ potassium })}/>
+              <Label style={{color:'white'}}> Potassium % </Label>
+              <Input style={{color:'white'}} onChangeText={(potassium) => this.setState({ potassium })}/>
             </Item>
 
 
 
             <Item floatingLabel last>
-              <Label>Dry Matter% </Label>
-              <Input onChangeText={(AvDryMatter) => this.setState({ AvDryMatter })}/>
+              <Label style={{color:'white'}}>Dry Matter% </Label>
+              <Input style={{color:'white'}} onChangeText={(AvDryMatter) => this.setState({ AvDryMatter })}/>
             </Item>
 
           </Form>
@@ -99,22 +107,25 @@ class PredictionsScreen extends React.Component{
 
           </Button>
 
-          <Text  style={{'color':'blue','fontSize':20,'fontWeight':'bold','margin':10}}> Instructions :</Text>
-          <Text style={{'color':'#000','fontSize':15,'margin':10}}>   Enter the the values of :{'\n'} {'\n'}
+          <Text  style={{'color':'#0099cc','fontSize':30,'fontWeight':'bold','margin':10}}> Instructions :</Text>
+          <Text style={{'color':'#fff','fontSize':20,'margin':10}}>   Enter the the values of :{'\n'} {'\n'}
           1) Average soil moisture % {'\n'}
           2) Average Nitrogen (N) % {'\n'}
           3) Average Phosphorus (P) % {'\n'}
           4) Average Postassium (K) % {'\n'}
           5) Average Dry matter % {'\n'} {'\n'}
-          obtained from the soil  test and hit submit to get crop prediction. </Text>
+          obtained from the soil  test (or the IoT sensors) and hit submit to get crop prediction . </Text>
 
 
-
+</ImageBackground>
         </Content>
+
       </Container>
+
     );
   }
   }
 }
+
 
 export default PredictionsScreen;
