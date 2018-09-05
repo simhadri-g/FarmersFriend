@@ -29,7 +29,7 @@ class CropDetails extends React.Component{
 
 
     return(
-      <Container style={{backgroundColor:'#99ff99'}}>
+      <Container style={{backgroundColor:'#fff'}}>
         <Content>
 
 

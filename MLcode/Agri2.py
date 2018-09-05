@@ -166,12 +166,14 @@ def gg():
     
    # print(type(language))
     print('AV Moisture = ',AvMo,'Av Dry =' ,AvDry,'Av Nitro =',AvN )
-    print(type(AvMo))
-    print(AvK)
-    print(AvP)
+    #print(type(AvMo))
+    print('Avg K%',AvK)
+    print('Av P%',AvP)
+    
     arr = [AvMo,AvN,AvP,AvK,AvDry]
     #arr1  = list(map(lambda x: int(x),arr))
     #print(arr1, arr)
+    print('soil details',arr)
     if  AvK!=None:
         print("X called")
         ReturnList = (Xcall(arr))
@@ -182,8 +184,8 @@ def gg():
         #
         return jsonify(result)
     else:    
-        print("print something")
-        return "hello"
+        #print("print something")
+        return "No value"
     
     
     
